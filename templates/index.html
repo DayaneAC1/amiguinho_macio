@@ -3,11 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/estilo.css">
     <title>Document</title>
 </head>
 <body>
     <a href="/cadastro">Não tenho uma conta</a>
     <a href="/login">Já tenho uma conta</a>
+    {%for produto in produtos%}
+    <a href="/produto/{{produto[0]}}">
+        <div class="card">
+          <img
+            src="{{produto[2]}}"
+            alt="Capa do Projeto"
+            class="cover"
+          />
+          <div class="card-content">
+            <h3>{{produto[1]}}</h3>
+            <p>R$ {{produto[4]}}</p>
+          </div>
+        </div>
+      </a>
+      {% endfor %}
     
 </body>
 </html>

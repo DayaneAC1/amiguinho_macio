@@ -96,12 +96,22 @@ def localizar_admin(email):
     cursor.execute('''SELECT admin FROM usuarios WHERE email=?''', (email,))
     return cursor.fetchone()
 
-def adicionar_produto(nome, imagem, descricao, preco):
+def criar_produto(formulario):
     conexao = conectar_banco()
     cursor = conexao.cursor()
     
     cursor.execute('''INSERT INTO produtos (nome_produto, imagem_produto, descricao, preco) 
-                   VALUES (?, ?, ?, ?)''', ((nome, imagem, descricao, preco)))
+                   VALUES (?, ?, ?, ?)''', (formulario ['nome_produto'],
+                    formulario['imagem_produto'],formulario['descricao'], formulario['preco']))
+    conexao.commit()
+    
+def ver_produtos():
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    
+    cursor.execute('''SELECT * FROM produtos''')
+    return cursor.fetchall()
+    
 
 if __name__=="__main__":
     criar_tabelas()

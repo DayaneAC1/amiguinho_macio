@@ -6,7 +6,8 @@ app.secret_key = "SENHA SECRETA"
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    produtos = database.ver_produtos()
+    return render_template('index.html', produtos=produtos)
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
@@ -46,6 +47,17 @@ def moderador():
 def criar_produto():
     if request.method == "GET":
         return render_template('criar_produto.html')
+    
+    form = request.form
+    database.criar_produto(form)
+    return redirect('/adm')
+
+@app.route("/ver_produto")
+def ver_produto():
+    return redirect('/home')
+    
+
+    
 
 if __name__ == "__main__":
     app.run(debug=True)

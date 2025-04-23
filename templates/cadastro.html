@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/estilo.css">
     <title>Document</title>
 </head>
 <body>
     <form action="/cadastro" method="post">
-        <label for="email">Digite seu email</label>
-        <input type="text" name="email">
-        <label for="cpf">Digite seu CPF</label>
-        <input type="text" name="cpf">
-        <label for="senha">Digite sua senha</label>
-        <input type="text" name="senha">
-        
-        <button button type="submit" class="btn">Cadastrar</button>
+        <div class="caixa">
+            <label for="email">Digite seu email</label>
+            <input type="text" name="email">
+            <label for="cpf">Digite seu CPF</label>
+            <input type="text" name="cpf">
+            <label for="senha">Digite sua senha</label>
+            <input type="text" name="senha">
+            
+            <div class="botoes button">
+                <button button type="submit" class="btn">Cadastrar</button>
+            </div>
+        </div>
     </form>
 </body>
 </html>

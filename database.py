@@ -111,7 +111,8 @@ def ver_produtos():
     
     cursor.execute('''SELECT * FROM produtos''')
     return cursor.fetchall()
-    
+
+
 
 if __name__=="__main__":
     criar_tabelas()

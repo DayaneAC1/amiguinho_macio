@@ -3,20 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/estilo.css">
     <title>Document</title>
 </head>
 <body>
     <form action="/criar_produto" method="POST">
-        <label for="nome_produto">Nome do produto</label>
-        <input type="text" name="nome_produto">
-        <label for="imagem_produto">Url da Imagem</label>
-        <input type="text" name="imagem_produto">
-        <label for"descricao">Descrição do produto</label>
-        <input type="text" name="descricao">
-        <label for="preco">Preço do produto</label>
-        <input type="text" name="preco">
+        <div class="caixa">
+            <label for="nome_produto">Nome do produto</label>
+            <input type="text" name="nome_produto">
+            <label for="imagem_produto">Url da Imagem</label>
+            <input type="text" name="imagem_produto">
+            <label for"descricao">Descrição do produto</label>
+            <input type="text" name="descricao">
+            <label for="preco">Preço do produto</label>
+            <input type="text" name="preco">
         
-        <button type="submit">Adicionar produto</button>
+            <div class="botoes button">
+                <button type="submit">Adicionar produto</button>
+            </div>
+        </div>
     </form>
 </body>
 </html>

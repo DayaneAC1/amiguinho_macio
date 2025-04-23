@@ -55,6 +55,7 @@ def criar_produto():
 @app.route("/ver_produto")
 def ver_produto():
     return redirect('/home')
+
     
 
     

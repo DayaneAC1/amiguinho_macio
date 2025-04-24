@@ -112,6 +112,31 @@ def ver_produtos():
     cursor.execute('''SELECT * FROM produtos''')
     return cursor.fetchall()
 
+def excluir_produto(id):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    
+    cursor.execute('''DELETE FROM produtos WHERE id=?''', (id,))
+    conexao.commit()
+
+def pegar_produto(id):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    
+    cursor.execute('''SELECT * FROM produtos WHERE id=?''', (id,))
+    return cursor.fetchone()
+
+def editar_produto(formulario, id):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    
+    cursor.execute('''UPDATE produtos SET nome_produto=?, imagem_produto=?,
+                   descricao=?, preco=? WHERE id=?''', (formulario['nome_produto'], formulario['imagem_produto'], 
+                    formulario['descricao'], formulario['preco'], id))
+    conexao.commit()
+    
+
+
 
 
 if __name__=="__main__":

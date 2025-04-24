@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/estilo.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="grupo-cartoes">
+        {%for produto in produtos%}
+        <a href="/produto/{{produto[0]}}">
+            <div class="cartao">
+              <img
+                src="{{produto[2]}}"
+                alt="Capa do Projeto"
+                class="cover"
+              />
+              <div class="conteudo-cartao">
+                <h3>{{produto[1]}}</h3>
+                <p>R$ {{produto[4]}}</p>
+                <a href="/editar_produto/{{produto[0]}}">Editar</a>
+                <a href="/excluir_produto/{{produto[0]}}">Excluir</a>
+              </div>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+</body>
+</html>

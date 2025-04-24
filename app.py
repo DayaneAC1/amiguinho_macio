@@ -7,7 +7,11 @@ app.secret_key = "SENHA SECRETA"
 @app.route('/')
 def index():
     produtos = database.ver_produtos()
-    return render_template('index.html', produtos=produtos)
+    adm=database.localizar_admin(session["email"])
+    if adm[0] == 1:
+        return redirect("/adm")
+    print (adm)
+    return render_template('index.html', produtos=produtos, adm=adm)
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
@@ -16,7 +20,7 @@ def login():
         form = request.form
         if database.verificar_usuario(form) == True:
             session['email'] = form['email']
-            return redirect("/home")
+            return redirect("/")
         else:
             return redirect("/login")
     else:    
@@ -33,11 +37,6 @@ def cadastro():
     else:    
         return render_template('cadastro.html')
     
-@app.route('/home')
-def home():
-    adm=database.localizar_admin(session["email"])
-    print(adm)
-    return render_template('home.html', adm=adm)
 
 @app.route("/adm")
 def moderador():
@@ -54,7 +53,26 @@ def criar_produto():
 
 @app.route("/ver_produto")
 def ver_produto():
-    return redirect('/home')
+    produtos=database.ver_produtos()
+    print(produtos)
+    return render_template('ver_produtos.html', produtos=produtos)
+
+@app.route("/excluir_produto/<id>")
+def excluir_produto(id):
+    database.excluir_produto(id)
+    return redirect('/adm')
+
+@app.route("/editar_produto/<id>", methods=["GET", "POST"])
+def editar_produto(id):
+    if request.method == "POST":
+        form = request.form
+        database.editar_produto(form, id)
+        return redirect("/adm")
+    else:
+        produto=database.pegar_produto(id)
+        return render_template("editar_produto.html", produto=produto)
+
+    
 
     
 

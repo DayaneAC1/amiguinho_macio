@@ -71,6 +71,11 @@ def editar_produto(id):
     else:
         produto=database.pegar_produto(id)
         return render_template("editar_produto.html", produto=produto)
+    
+@app.route("/comprar_produto/<id>", methods=["GET", "POST"])
+def comprar_produto(id):
+    if request.method == "POST":
+       form = request.form 
 
     
 

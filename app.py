@@ -16,7 +16,7 @@ def index():
             return redirect("/adm")
         
       
-    return render_template('index.html', produtos=produtos, sessao =sessao)
+    return render_template('index.html', produtos=produtos, sessao=sessao)
 
 @app.route('/login', methods=["GET", "POST"])
 def login():

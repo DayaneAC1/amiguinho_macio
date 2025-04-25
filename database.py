@@ -144,6 +144,14 @@ def comprar_produto(id, preco, formulario, status, data_e_horario_do_pedido, dat
                     preco, formulario['pagamento'], status, data_e_horario_do_pedido, data_e_horario_de_entrega))
     conexao.commit()
     
+def ver_vendas():
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    
+    cursor.execute('''SELECT * FROM vendas''')
+    return cursor.fetchall()
+
+    
     
 
 

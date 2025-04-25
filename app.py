@@ -7,7 +7,7 @@ app.secret_key = "SENHA SECRETA"
 
 @app.route('/')
 def index():
-    sessao = 0 
+    sessao = 0
     produtos = database.ver_produtos()
     if session:
         sessao = 1
@@ -90,9 +90,10 @@ def comprar_produto(id):
     database.comprar_produto(id, preco[4], form, status, data_e_horario_do_pedido, data_e_horario_de_entrega)
     return redirect('/')
 
-    
-
-    
+@app.route("/ver_vendas")
+def ver_vendas():
+    produtos = database.ver_vendas()
+    return render_template("ver_vendas.html", produtos=produtos)
 
     
 

@@ -165,4 +165,35 @@ input, textarea, select {
     box-sizing: border-box;
 }
 
+/* Estilo básico para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+/* Estilizando os cabeçalhos da tabela */
+th {
+    background-color: #ff69b4; /* Cor rosa */
+    color: white; /* Texto branco */
+    padding: 10px;
+    text-align: left;
+}
+
+/* Estilizando as células da tabela */
+td {
+    padding: 10px;
+    border: 1px solid #ddd; /* Cor de borda mais suave */
+    text-align: left;
+}
+
+/* Estilo para as linhas da tabela */
+tbody tr:nth-child(even) {
+    background-color: #f8f8f8; /* Cor de fundo alternada para as linhas */
+}
+
+tbody tr:hover {
+    background-color: #ffe6f1; /* Efeito hover para as linhas */
+}
+
 

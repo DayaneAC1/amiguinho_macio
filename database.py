@@ -135,6 +135,16 @@ def editar_produto(formulario, id):
                     formulario['descricao'], formulario['preco'], id))
     conexao.commit()
     
+def comprar_produto(id, preco, formulario, status, data_e_horario_do_pedido, data_e_horario_de_entrega):
+    conexao = conectar_banco()
+    cursor = conexao.cursor()
+    
+    cursor.execute('''INSERT INTO vendas (produto_id, preco, pagamento, status, data_e_horario_do_pedido, data_e_horario_de_entrega) 
+                   VALUES (?, ?, ?, ?, ?, ?)''', (id,
+                    preco, formulario['pagamento'], status, data_e_horario_do_pedido, data_e_horario_de_entrega))
+    conexao.commit()
+    
+    
 
 
 

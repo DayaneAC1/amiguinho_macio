@@ -1,17 +1,22 @@
 from flask import Flask, render_template, request, redirect, session
 import database
+import datetime
 
 app = Flask(__name__) 
 app.secret_key = "SENHA SECRETA"
 
 @app.route('/')
 def index():
+    sessao = 0 
     produtos = database.ver_produtos()
-    adm=database.localizar_admin(session["email"])
-    if adm[0] == 1:
-        return redirect("/adm")
-    print (adm)
-    return render_template('index.html', produtos=produtos, adm=adm)
+    if session:
+        sessao = 1
+        adm=database.localizar_admin(session["email"])
+        if adm[0] == 1:
+            return redirect("/adm")
+        
+      
+    return render_template('index.html', produtos=produtos, sessao =sessao)
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
@@ -72,10 +77,18 @@ def editar_produto(id):
         produto=database.pegar_produto(id)
         return render_template("editar_produto.html", produto=produto)
     
-@app.route("/comprar_produto/<id>", methods=["GET", "POST"])
+@app.route("/produto/<id>", methods=["GET", "POST"])
 def comprar_produto(id):
-    if request.method == "POST":
-       form = request.form 
+    if request.method == "GET":
+        produto=database.pegar_produto(id)
+        return render_template('comprar_produto.html', produto=produto)
+    form = request.form
+    status= "Compra efetuada" 
+    preco=database.pegar_produto(id)
+    data_e_horario_do_pedido = datetime.datetime.now()
+    data_e_horario_de_entrega = "Entrega em até três dias úteis."   
+    database.comprar_produto(id, preco[4], form, status, data_e_horario_do_pedido, data_e_horario_de_entrega)
+    return redirect('/')
 
     
 

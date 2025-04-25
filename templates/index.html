@@ -7,14 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-  {% if adm[0] == 1 %}
-  <a href="/adm">Admin</a>
-  {% endif %}
-  
+ 
+    {% if sessao == 0 %}
     <div class="botoes">
         <a href="/cadastro">Não tenho uma conta</a>
         <a href="/login">Já tenho uma conta</a>
     </div>
+    {% endif %}
     <div class="grupo-cartoes">
     {%for produto in produtos%}
     <a href="/produto/{{produto[0]}}">
